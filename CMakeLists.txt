@@ -52,6 +52,9 @@ if (OpenCV_FOUND)
     include
   )
 
+  add_executable(marker_creation src/marker_creation.cpp)
+  add_dependencies(marker_creation eigen3 opencv)
+
   add_executable(${PROJECT_NAME} src/main.cpp)
   add_dependencies(${PROJECT_NAME} eigen3 opencv)
   add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD
@@ -62,6 +65,7 @@ if (OpenCV_FOUND)
   )
 
   target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
+  target_link_libraries(marker_creation ${OpenCV_LIBS})
 
 else (OpenCV_FOUND)
 
